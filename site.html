@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AQUA BREW - Kit para Baristas</title>
+    <style>
+        :root {
+            scroll-behavior: smooth;
+        }
+    </style>
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -33,8 +40,9 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#hero" class="text-gray-600 hover:text-gray-900 transition">Inicio</a>
                     <a href="#productos" class="text-gray-600 hover:text-gray-900 transition">Productos</a>
+                    <a href="#manual" class="text-gray-600 hover:text-gray-900 transition">Manual</a>
                     <a href="#beneficios" class="text-gray-600 hover:text-gray-900 transition">Beneficios</a>
-                    <a href="#contacto" class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition">Contacto</a>
+                    <a href="#contacto" class="text-gray-600 hover:text-gray-900 transition">Contacto</a>
                 </div>
                 
                 <!-- Botón Hamburguesa -->
@@ -132,6 +140,27 @@
             </div>
         </div>
     </section>
+
+    <!-- Manual Experto Section -->
+    <section id="manual" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto rounded-lg">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Manual Experto</h2>
+        <div class="relative">
+            <div class="owl-carousel owl-theme">
+                <img src="images/step00.png" alt="Step00">
+                <img src="images/step01.png" alt="Step01">
+                <img src="images/step02.png" alt="Step02">
+                <img src="images/step03.png" alt="Step03">
+                <img src="images/step04.png" alt="Step04">
+                <img src="images/step05.png" alt="Step05">
+                <img src="images/step06.png" alt="Step06">
+                <img src="images/step07.png" alt="Step07">
+                <img src="images/step08.png" alt="Step08">
+                <img src="images/step09.png" alt="Step09">
+            </div>
+        </div>
+
+    </section>
+
 
     <!-- Beneficios Section -->
     <section id="beneficios" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-100 rounded-lg">
@@ -281,64 +310,8 @@
         </div>
     </div>
 
-    <script>
-        // Menú Hamburguesa
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Modal
-        function openModal(product) {
-            const modal = document.getElementById('modal');
-            const modalTitle = document.getElementById('modal-title');
-            const modalColor = document.getElementById('modal-color');
-            const modalDescription = document.getElementById('modal-description');
-            const confirmBtn = document.getElementById('confirm-btn');
-            
-            switch(product) {
-                case 'fruit':
-                    modalTitle.textContent = 'Fruit Sparkle';
-                    modalDescription.textContent = 'Aporta acidez brillante y notas frutales florales, con tonos de frutas cítricas.';
-                    modalColor.className = 'w-12 h-1 bg-fruit mb-4';
-                    confirmBtn.className = confirmBtn.className.replace(/bg-\w+/g, '') + ' bg-fruit';
-                    break;
-                case 'body':
-                    modalTitle.textContent = 'Body & Sweetness';
-                    modalDescription.textContent = 'Aporta cuerpo y dulzura, con una textura delicada y un dulzor terso.';
-                    modalColor.className = 'w-12 h-1 bg-body mb-4';
-                    confirmBtn.className = confirmBtn.className.replace(/bg-\w+/g, '') + ' bg-body';
-                    break;
-                case 'floral':
-                    modalTitle.textContent = 'Floral & Citrus Brightness';
-                    modalDescription.textContent = 'Aporta acidez brillante e intensa y notas frutales. En exceso, puede generar amargor dominante.';
-                    modalColor.className = 'w-12 h-1 bg-floral mb-4';
-                    confirmBtn.className = confirmBtn.className.replace(/bg-\w+/g, '') + ' bg-floral';
-                    break;
-                case 'balance':
-                    modalTitle.textContent = 'Balance & Structure';
-                    modalDescription.textContent = 'Aporta estructura y complejidad, proporcionando equilibrio y armonía. Genera una acidez de baja intensidad.';
-                    modalColor.className = 'w-12 h-1 bg-balance mb-4';
-                    confirmBtn.className = confirmBtn.className.replace(/bg-\w+/g, '') + ' bg-balance';
-                    break;
-            }
-            
-            modal.classList.remove('hidden');
-        }
-        
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
-        }
-        
-        // Cerrar modal al hacer clic fuera
-        window.onclick = function(event) {
-            const modal = document.getElementById('modal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/menu.js"></script>
 </body>
 </html>

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQUA BREW - Kit para Baristas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'fruit': '#DA3987',
+                        'body': '#8ED2E9',
+                        'floral': '#A8CB4E',
+                        'balance': '#FFF585',
+                    },
+                    transitionProperty: {
+                        'height': 'height',
+                        'spacing': 'margin, padding',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Navbar Fijo -->
+    <nav class="fixed w-full bg-white dark:bg-gray-800 shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <img src="images/logo-navbar.png" alt="Aqua Brew Logo" width="160px" class="dark:filter dark:brightness-0 dark:invert">
+                </div>
+                
+                <!-- Menú Desktop -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#hero" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Inicio</a>
+                    <a href="#productos" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Productos</a>
+                    <a href="#manual" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Manual Experto</a>
+                    <a href="#beneficios" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Beneficios</a>
+                    <a href="#contacto" class="bg-gray-800 dark:bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-700 dark:hover:bg-gray-600 transition">
+                        Contacto
+                    </a>
+                    
+                    <!-- Selector de idioma -->
+                    <div class="relative ml-2">
+                        <select id="language-selector" class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 py-1 px-2 pr-8 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-500 appearance-none text-sm">
+                            <option value="es">🇪🇸 Español</option>
+                            <option value="en">🇬🇧 English</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Toggle modo oscuro -->
+                    <button id="theme-toggle" class="p-2 rounded-full focus:outline-none">
+                        <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Botón Hamburguesa -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Menú Móvil -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#hero" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700">Inicio</a>
+                <a href="#productos" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700">Productos</a>
+                <a href="#manual" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700">Manual Experto</a>
+                <a href="#beneficios" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700">Beneficios</a>
+                <a href="#contacto" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700">Contacto</a>
+                
+                <div class="px-3 py-2 flex items-center justify-between">
+                    <select id="mobile-language-selector" class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 py-1 px-2 pr-8 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-500 appearance-none text-sm">
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="en">🇬🇧 English</option>
+                    </select>
+                    
+                    <button id="mobile-theme-toggle" class="p-2 rounded-full focus:outline-none">
+                        <svg id="mobile-theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="mobile-theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section Full Height con Imagen de Fondo -->
+    <section id="hero" class="min-h-screen pt-16 flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/hero.jpeg');">
+        <div class="text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Aqua Brew <span class="text-gray-200">– Kit para Baristas</span></h1>
+            <p class="text-xl md:text-2xl text-gray-100 mb-8">
+                Optimiza la extracción de café resaltando atributos como acidez, cuerpo, balance, sabor, dulzor y notas frutales.
+            </p>
+            <div class="mt-8">
+                <a href="#productos" class="inline-block bg-white text-gray-800 px-8 py-4 rounded-md text-lg font-medium hover:bg-gray-100 transition transform hover:scale-105">
+                    Descubre nuestros kits
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos Section - 2 columnas -->
+    <section id="productos" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Nuestros Kits Especializados</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Producto 1 -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row h-auto md:h-96">
+                <div class="w-full md:w-1/2 h-64 md:h-auto bg-cover bg-center" style="background-image: url('images/kit01.png');"></div>
+                <div class="w-full md:w-1/2 p-8 flex flex-col justify-center border-t-4 border-fruit">
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Fruit Sparkle</h3>
+                    <div class="w-12 h-1 bg-fruit mb-4"></div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Aporta acidez brillante y notas frutales florales, con tonos de frutas cítricas.</p>
+                    <button onclick="openModal('fruit')" class="mt-auto bg-fruit text-white py-3 px-6 rounded-md hover:bg-opacity-90 transition transform hover:scale-105 w-full md:w-auto">
+                        Comprar Kit
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Producto 2 -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row h-auto md:h-96">
+                <div class="w-full md:w-1/2 h-64 md:h-auto bg-cover bg-center" style="background-image: url('images/kit02.png');"></div>
+                <div class="w-full md:w-1/2 p-8 flex flex-col justify-center border-t-4 border-body">
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Body & Sweetness</h3>
+                    <div class="w-12 h-1 bg-body mb-4"></div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Aporta cuerpo y dulzura, con una textura delicada y un dulzor terso.</p>
+                    <button onclick="openModal('body')" class="mt-auto bg-body text-gray-800 dark:text-gray-900 py-3 px-6 rounded-md hover:bg-opacity-90 transition transform hover:scale-105 w-full md:w-auto">
+                        Comprar Kit
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Producto 3 -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row h-auto md:h-96">
+                <div class="w-full md:w-1/2 h-64 md:h-auto bg-cover bg-center" style="background-image: url('images/kit03.png');"></div>
+                <div class="w-full md:w-1/2 p-8 flex flex-col justify-center border-t-4 border-floral">
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Floral & Citrus Brightness</h3>
+                    <div class="w-12 h-1 bg-floral mb-4"></div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Aporta acidez brillante e intensa y notas frutales. En exceso, puede generar amargor dominante.</p>
+                    <button onclick="openModal('floral')" class="mt-auto bg-floral text-gray-800 dark:text-gray-900 py-3 px-6 rounded-md hover:bg-opacity-90 transition transform hover:scale-105 w-full md:w-auto">
+                        Comprar Kit
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Producto 4 -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row h-auto md:h-96">
+                <div class="w-full md:w-1/2 h-64 md:h-auto bg-cover bg-center" style="background-image: url('images/kit04.png');"></div>
+                <div class="w-full md:w-1/2 p-8 flex flex-col justify-center border-t-4 border-balance">
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Balance & Structure</h3>
+                    <div class="w-12 h-1 bg-balance mb-4"></div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Aporta estructura y complejidad, proporcionando equilibrio y armonía. Genera una acidez de baja intensidad.</p>
+                    <button onclick="openModal('balance')" class="mt-auto bg-balance text-gray-800 dark:text-gray-900 py-3 px-6 rounded-md hover:bg-opacity-90 transition transform hover:scale-105 w-full md:w-auto">
+                        Comprar Kit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manual Experto Section -->
+    <section id="manual" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-100 dark:bg-gray-800 rounded-lg">
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Manual Experto</h2>
+        
+        <div class="relative">
+            <!-- Carrusel -->
+            <div class="overflow-hidden">
+                <div id="carousel" class="flex transition-transform duration-300 ease-in-out">
+                    <!-- Imágenes del carrusel (9 en total) -->
+                    <div class="w-full sm:w-1/2 md:w-1/4 flex-shrink-0 px-2">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md h-full">
+                            <img src="images/manual-1.jpg" alt="Manual 1" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2">Paso 1</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Preparación inicial del equipo</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full sm:w-1/2 md:w-1/4 flex-shrink-0 px-2">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md h-full">
+                            <img src="images/manual-2.jpg" alt="Manual 2" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2">Paso 2</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Selección de granos</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full sm:w-1/2 md:w-1/4 flex-shrink-0 px-2">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md h-full">
+                            <img src="images/manual-3.jpg" alt="Manual 3" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2">Paso 3</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Medición precisa</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full sm:w-1/2 md:w-1/4 flex-shrink-0 px-2">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md h-full">
+                            <img src="images/manual-4.jpg" alt="Manual 4" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2">Paso 4</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Técnica de molienda</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full sm:w-1/2 md:w-1/4 flex-shrink-0 px-2">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md h-full">
+                            <img src="images/manual-5.jpg" alt="Manual 5" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2">Paso 5</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Preparación del agua</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full sm:w-1/2 md:w-1/4 flex-shrink-0 px-2">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md h-full">
+                            <img src="images/manual-6.jpg" alt="Manual 6" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2">Paso 6</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Tiempo de extracción</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full sm:w-1/2 md:w-1/4 flex-shrink-0 px-2">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md h-full">
+                            <img src="images/manual-7.jpg" alt="Manual 7" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2">Paso 7</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Control de temperatura</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full sm:w-1/2 md:w-1/4 flex-shrink-0 px-2">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md h-full">
+                            <img src="images/manual-8.jpg" alt="Manual 8" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2">Paso 8</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Presentación final</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full sm:w-1/2 md:w-1/4 flex-shrink-0 px-2">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md h-full">
+                            <img src="images/manual-9.jpg" alt="Manual 9" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2">Paso 9</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Degustación profesional</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Controles del carrusel -->
+            <button id="prev-btn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-700 rounded-full p-2 shadow-md z-10 -ml-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            
+            <button id="next-btn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-700 rounded-full p-2 shadow-md z-10 -mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Indicadores -->
+        <div class="flex justify-center mt-6 space-x-2">
+            <button class="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 carousel-indicator" data-index="0"></button>
+            <button class="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 carousel-indicator" data-index="1"></button>
+            <button class="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 carousel-indicator" data-index="2"></button>
+        </div>
+    </section>
+
+    <!-- Beneficios Section -->
+    <section id="beneficios" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-100 dark:bg-gray-800 rounded-lg">
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Beneficios del Kit</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm hover:shadow-md transition">
+                <div class="text-2xl text-gray-800 dark:text-white mb-4">✨</div>
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Extracción Optimizada</h3>
+                <p class="text-gray-600 dark:text-gray-300">Resalta los atributos del café en taza para una experiencia sensorial superior.</p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm hover:shadow-md transition">
+                <div class="text-2xl text-gray-800 dark:text-white mb-4">🏆</div>
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Para Competencias</h3>
+                <p class="text-gray-600 dark:text-gray-300">Ideal para competencias de barismo y comercialización de cafés especiales.</p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm hover:shadow-md transition">
+                <div class="text-2xl text-gray-800 dark:text-white mb-4">🧪</div>
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Minerales Esenciales</h3>
+                <p class="text-gray-600 dark:text-gray-300">Compuesto por cloruros, sulfatos, carbonatos, bicarbonatos, calcio, sodio, potasio y magnesio.</p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm hover:shadow-md transition">
+                <div class="text-2xl text-gray-800 dark:text-white mb-4">☕</div>
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Técnicas Diversas</h3>
+                <p class="text-gray-600 dark:text-gray-300">Compatible con Chemex, AeroPress, prensa francesa, V60 y más.</p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm hover:shadow-md transition">
+                <div class="text-2xl text-gray-800 dark:text-white mb-4">🌟</div>
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Calidad Garantizada</h3>
+                <p class="text-gray-600 dark:text-gray-300">Mejora la percepción de los atributos del café para profesionales y entusiastas.</p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm hover:shadow-md transition">
+                <div class="text-2xl text-gray-800 dark:text-white mb-4">🎨</div>
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Fácil Identificación</h3>
+                <p class="text-gray-600 dark:text-gray-300">Cada perfil tiene un color distintivo para rápida identificación.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="bg-gray-800 dark:bg-gray-700 rounded-xl p-8 md:p-12 text-white">
+            <h2 class="text-3xl font-bold mb-6">¿Listo para elevar tu experiencia con el café?</h2>
+            <p class="text-gray-300 mb-8 max-w-2xl">Contáctanos para más información sobre el kit AQUA BREW y cómo puede transformar tu preparación de café.</p>
+            
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium mb-1">Nombre</label>
+                    <input type="text" id="name" class="w-full px-4 py-3 rounded-md bg-gray-700 border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                    <input type="email" id="email" class="w-full px-4 py-3 rounded-md bg-gray-700 border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </div>
+                
+                <div class="md:col-span-2">
+                    <label for="message" class="block text-sm font-medium mb-1">Mensaje</label>
+                    <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-md bg-gray-700 border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                </div>
+                
+                <div class="md:col-span-2">
+                    <button type="submit" class="bg-white text-gray-800 px-8 py-4 rounded-md font-medium hover:bg-gray-200 transition transform hover:scale-105">
+                        Enviar Mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Enlaces</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Términos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacidad</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contacto</h4>
+                    <p class="text-gray-400 mb-2">info@aqua-brew.vercel.app</p>
+                    <p class="text-gray-400">+57 314 6737460</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400 text-sm">
+                &copy; 2025 Aqua Brew. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Fondo -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            
+            <!-- Contenido del Modal -->
+            <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 id="modal-title" class="text-2xl leading-6 font-bold text-gray-900 dark:text-white mb-2">
+                                Fruit Sparkle
+                            </h3>
+                            <div id="modal-color" class="w-12 h-1 bg-fruit mb-4"></div>
+                            <div class="mt-2">
+                                <p id="modal-description" class="text-gray-600 dark:text-gray-300 mb-4">
+                                    Aporta acidez brillante y notas frutales florales, con tonos de frutas cítricas.
+                                </p>
+                                
+                                <div class="mt-4">
+                                    <label for="quantity" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Cantidad</label>
+                                    <select id="quantity" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700">
+                                        <option>1 - $29.99</option>
+                                        <option>2 - $54.99</option>
+                                        <option>3 - $79.99</option>
+                                        <option>Kit Completo (4) - $99.99</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" id="confirm-btn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-fruit text-base font-medium text-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fruit sm:ml-3 sm:w-auto sm:text-sm">
+                        Confirmar Compra
+                    </button>
+                    <button onclick="closeModal()" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-600 text-base font-medium text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menú Hamburguesa
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Modal
+        function openModal(product) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalColor = document.getElementById('modal-color');
+            const modalDescription = document.getElementById('modal-description');
+            const confirmBtn = document.getElementById('confirm-btn');
+            
+            switch(product) {
+                case 'fruit':
+                    modalTitle.textContent = 'Fruit Sparkle';
+                    modalDescription.textContent = 'Aporta acidez brillante y notas frutales florales, con tonos de frutas cítricas.';
+                    modalColor.className = 'w-12 h-1 bg-fruit mb-4';
+                    confirmBtn.className = confirmBtn.className.replace(/bg-\w+/g, '') + ' bg-fruit';
+                    break;
+                case 'body':
+                    modalTitle.textContent = 'Body & Sweetness';
+                    modalDescription.textContent = 'Aporta cuerpo y dulzura, con una textura delicada y un dulzor terso.';
+                    modalColor.className = 'w-12 h-1 bg-body mb-4';
+                    confirmBtn.className = confirmBtn.className.replace(/bg-\w+/g, '') + ' bg-body';
+                    break;
+                case 'floral':
+                    modalTitle.textContent = 'Floral & Citrus Brightness';
+                    modalDescription.textContent = 'Aporta acidez brillante e intensa y notas frutales. En exceso, puede generar amargor dominante.';
+                    modalColor.className = 'w-12 h-1 bg-floral mb-4';
+                    confirmBtn.className = confirmBtn.className.replace(/bg-\w+/g, '') + ' bg-floral';
+                    break;
+                case 'balance':
+                    modalTitle.textContent = 'Balance & Structure';
+                    modalDescription.textContent = 'Aporta estructura y complejidad, proporcionando equilibrio y armonía. Genera una acidez de baja intensidad.';
+                    modalColor.className = 'w-12 h-1 bg-balance mb-4';
+                    confirmBtn.className = confirmBtn.className.replace(/bg-\w+/g, '') + ' bg-balance';
+                    break;
+            }
+            
+            modal.classList.remove('hidden');
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+        
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // Carrusel
+        const carousel = document.getElementById('carousel');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        
+        let currentIndex = 0;
+        const itemWidth = 100; // Porcentaje
+        const itemsPerSlide = window.innerWidth < 640 ? 2 : window.innerWidth < 768 ? 2 : 4;
+        const totalItems = 9;
+        const totalSlides = Math.ceil(totalItems / itemsPerSlide);
+        
+        function updateCarousel() {
+            const translateX = -currentIndex * 100;
+            carousel.style.transform = `translateX(${translateX}%)`;
+            
+            // Actualizar indicadores
+            indicators.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                    indicator.classList.add('bg-gray-500', 'dark:bg-gray-400');
+                    indicator.classList.remove('bg-gray-300', 'dark:bg-gray-600');
+                } else {
+                    indicator.classList.remove('bg-gray-500', 'dark:bg-gray-400');
+                    indicator.classList.add('bg-gray-300', 'dark:bg-gray-600');
+                }
+            });
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        });
+        
+        // Configurar indicadores
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+        
+        // Manejar cambios de tamaño de pantalla
+        window.addEventListener('resize', () => {
+            const newItemsPerSlide = window.innerWidth < 640 ? 2 : window.innerWidth < 768 ? 2 : 4;
+            if (newItemsPerSlide !== itemsPerSlide) {
+                currentIndex = 0;
+                updateCarousel();
+            }
+        });
+        
+        // Modo oscuro
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const mobileThemeToggleDarkIcon = document.getElementById('mobile-theme-toggle-dark-icon');
+        const mobileThemeToggleLightIcon = document.getElementById('mobile-theme-toggle-light-icon');
+        
+        // Verificar el tema almacenado o preferencia del sistema
+        if (localStorage.getItem('color-theme') === 'dark' || (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+            mobileThemeToggleLightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+            mobileThemeToggleDarkIcon.classList.remove('hidden');
+        }
+        
+        // Toggle del tema
+        function toggleTheme() {
+            // Toggle icons
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+            mobileThemeToggleDarkIcon.classList.toggle('hidden');
+            mobileThemeToggleLightIcon.classList.toggle('hidden');
+            
+            // Toggle theme
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+        
+        // Scroll suave para los enlaces
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Cerrar menú móvil si está abierto
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    
+                    // Scroll suave
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Inicializar carrusel
+        updateCarousel();
+    </script>
+</body>
+</html>
