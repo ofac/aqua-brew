@@ -16,6 +16,12 @@ function openModal(product) {
     const confirmBtn = document.getElementById('confirm-btn');
     
     switch(product) {
+        case 'kit':
+            modalTitle.textContent = 'Kit Completo';
+            modalDescription.textContent = 'Aporta acidez brillante y notas frutales florales, con tonos de frutas cítricas.';
+            modalColor.className = 'w-12 h-1 bg-fruit mb-4';
+            confirmBtn.className = confirmBtn.className.replace(/bg-\w+/g, '') + ' bg-fruit';
+            break;
         case 'fruit':
             modalTitle.textContent = 'Fruit Sparkle';
             modalDescription.textContent = 'Aporta acidez brillante y notas frutales florales, con tonos de frutas cítricas.';
