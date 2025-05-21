@@ -18,9 +18,9 @@ function openModal(product) {
     switch(product) {
         case 'kit':
             modalTitle.textContent = 'Kit Completo';
-            modalDescription.textContent = 'Aporta acidez brillante y notas frutales florales, con tonos de frutas cítricas.';
-            modalColor.className = 'w-12 h-1 bg-fruit mb-4';
-            confirmBtn.className = confirmBtn.className.replace(/bg-\w+/g, '') + ' bg-fruit';
+            modalDescription.textContent = 'Descubre el Kit completo de Aqua Brew: La herramienta definitiva para baristas exigentes.';
+            modalColor.className = 'w-12 h-1 bg-gray-900 mb-4';
+            confirmBtn.className = confirmBtn.className.replace(/bg-\w+/g, '') + ' bg-gray-900';
             break;
         case 'fruit':
             modalTitle.textContent = 'Fruit Sparkle';
