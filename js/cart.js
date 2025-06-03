@@ -96,12 +96,12 @@ function clearCart() {
 
 // Actualizar la interfaz del carrito
 function updateCartUI() {
-    const cartCount = document.getElementById('cart-count');
-    const mobileCartCount = document.getElementById('mobile-cart-count');
+    const cartCount          = document.getElementById('cart-count');
+    const mobileCartCount    = document.getElementById('mobile-cart-count');
     const cartItemsContainer = document.getElementById('cart-items');
-    const cartSubtotal = document.getElementById('cart-subtotal');
-    const cartTotal = document.getElementById('cart-total');
-    const checkoutBtn = document.getElementById('checkout-btn');
+    const cartSubtotal       = document.getElementById('cart-subtotal');
+    const cartTotal          = document.getElementById('cart-total');
+    const checkoutBtn        = document.getElementById('checkout-btn');
     
     // Actualizar contador
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -160,8 +160,8 @@ function updateCartUI() {
         
         cartItemsContainer.innerHTML = itemsHTML;
         
-        // Calcular envío (ejemplo: gratis para compras mayores a $200,000)
-        const shipping = subtotal >= 200000 ? 0 : 10000;
+        // Calcular envío (ejemplo: gratis para compras mayores a $400,000)
+        const shipping = subtotal >= 400000 ? 0 : 17000;
         
         // Actualizar totales
         cartSubtotal.textContent = `$${subtotal.toLocaleString()}`;
@@ -205,6 +205,28 @@ function proceedToCheckout() {
 
 // Mostrar modal de checkout
 function openCheckoutModal() {
+    // Limpiar el formulario y los errores
+    const form = document.getElementById('checkout-form');
+    form.reset();
+    
+    // Limpiar mensajes de error
+    const errorMessages = document.querySelectorAll('.text-red-500');
+    errorMessages.forEach(msg => msg.remove());
+    
+    // Limpiar bordes rojos
+    const errorFields = document.querySelectorAll('.border-red-500');
+    errorFields.forEach(field => {
+        field.classList.remove('border-red-500');
+        field.classList.add('border-gray-300');
+    });
+    
+    // Limpiar mensaje de error general si existe
+    const generalError = document.querySelector('.bg-red-100');
+    if (generalError) {
+        generalError.remove();
+    }
+
+    // Mostrar el modal
     document.getElementById('checkout-modal').classList.remove('hidden');
     document.body.classList.add('overflow-hidden');
 }
@@ -226,11 +248,82 @@ function openSuccessModal(orderNumber) {
 function closeSuccessModal() {
     document.getElementById('order-success-modal').classList.add('hidden');
     document.body.classList.remove('overflow-hidden');
+
+    // Limpiar el formulario por si acaso
+    const form = document.getElementById('checkout-form');
+    form.reset();
 }
 
 // Enviar pedido
 function submitOrder() {
+    // Obtener elementos del formulario
     const form = document.getElementById('checkout-form');
+    const requiredFields = [
+        'checkout-name', 
+        'checkout-email', 
+        'checkout-phone', 
+        'checkout-address', 
+        'checkout-city', 
+        'checkout-state'
+    ];
+    
+    let isValid = true;
+    
+    // Validar campos requeridos
+    requiredFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        const value = field.value.trim();
+        
+        if (!value) {
+            isValid = false;
+            field.classList.add('border-red-500');
+            field.classList.remove('border-gray-300');
+            
+            // Crear mensaje de error si no existe
+            if (!field.nextElementSibling || !field.nextElementSibling.classList.contains('text-red-500')) {
+                const errorMsg = document.createElement('p');
+                errorMsg.className = 'text-red-500 text-xs mt-1';
+                errorMsg.textContent = 'Este campo es obligatorio';
+                field.parentNode.insertBefore(errorMsg, field.nextSibling);
+            }
+        } else {
+            field.classList.remove('border-red-500');
+            field.classList.add('border-gray-300');
+            
+            // Eliminar mensaje de error si existe
+            if (field.nextElementSibling && field.nextElementSibling.classList.contains('text-red-500')) {
+                field.nextElementSibling.remove();
+            }
+        }
+    });
+    
+    // Validar email
+    const emailField = document.getElementById('checkout-email');
+    const emailValue = emailField.value.trim();
+    if (emailValue && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+        isValid = false;
+        emailField.classList.add('border-red-500');
+        emailField.classList.remove('border-gray-300');
+        
+        if (!emailField.nextElementSibling || !emailField.nextElementSibling.classList.contains('text-red-500')) {
+            const errorMsg = document.createElement('p');
+            errorMsg.className = 'text-red-500 text-xs mt-1';
+            errorMsg.textContent = 'Ingresa un email válido';
+            emailField.parentNode.insertBefore(errorMsg, emailField.nextSibling);
+        }
+    }
+    
+    // Si no es válido, detener el envío
+    if (!isValid) {
+        // Hacer scroll al primer campo con error
+        const firstErrorField = document.querySelector('.border-red-500');
+        if (firstErrorField) {
+            firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+    }
+    
+    // Si todo es válido, proceder con el envío
     const formData = new FormData(form);
     
     // Agregar items del carrito al formData
@@ -242,12 +335,18 @@ function submitOrder() {
     
     // Calcular totales
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const shipping = subtotal >= 200000 ? 0 : 10000;
+    const shipping = subtotal >= 400000 ? 0 : 17000;
     const total = subtotal + shipping;
     
     formData.append('subtotal', subtotal);
     formData.append('shipping', shipping);
     formData.append('total', total);
+    
+    // Mostrar estado de carga
+    const submitBtn = document.querySelector('#checkout-modal button[onclick="submitOrder()"]');
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Procesando...';
     
     // Enviar datos a Formspree
     fetch('https://formspree.io/f/xvgayrjb', {
@@ -258,6 +357,9 @@ function submitOrder() {
         }
     })
     .then(response => {
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+        
         if (response.ok) {
             // Generar número de pedido aleatorio
             const orderNumber = Math.floor(1000 + Math.random() * 9000);
@@ -273,7 +375,17 @@ function submitOrder() {
         }
     })
     .catch(error => {
-        alert('Hubo un error al procesar tu pedido. Por favor intenta nuevamente.');
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+        
+        // Mostrar mensaje de error general
+        const errorContainer = document.createElement('div');
+        errorContainer.className = 'bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4';
+        errorContainer.textContent = 'Hubo un error al procesar tu pedido. Por favor intenta nuevamente.';
+        
+        const formHeader = document.querySelector('#checkout-modal h3');
+        formHeader.parentNode.insertBefore(errorContainer, formHeader.nextSibling);
+        
         console.error(error);
     });
 }

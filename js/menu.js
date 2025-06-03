@@ -7,7 +7,7 @@ menuBtn.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden');
 });
 
-// Modal
+// Modal Productos
 function openModal(product) {
     const modal            = document.getElementById('modal');
     const modalTitle       = document.getElementById('modal-title');
@@ -55,7 +55,6 @@ function openModal(product) {
             price.textContent = `$50.000`
             break;
     }
-    
     modal.classList.remove('hidden');
 }
 
@@ -71,7 +70,7 @@ window.onclick = function(event) {
     }
 }
 
-
+// Config owl carousel 
 $('.owl-carousel').owlCarousel({
     loop: false,
     margin: 10,
