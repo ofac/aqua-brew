@@ -70,6 +70,17 @@ window.onclick = function(event) {
     }
 }
 
+// Funciones para el modal de Aqua Tips
+function openAquaTipsModal() {
+    document.getElementById('aqua-tips-modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeAquaTipsModal() {
+    document.getElementById('aqua-tips-modal').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
 // Config owl carousel 
 $('.owl-carousel').owlCarousel({
     loop: false,

@@ -4,19 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AQUA BREW - Kit para Baristas</title>
-    <style>
-        :root {
-            scroll-behavior: smooth;
-        }
-
-        #cart-modal {
-            transition: opacity 0.3s ease;
-        }
-
-        #added-to-cart-modal {
-            transition: all 0.3s ease;
-        }
-    </style>
+    <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -608,6 +596,68 @@
             </div>
         </div>
     </div>
+
+    <!-- Botón flotante Aqua Tips -->
+<div class="aqua-tips-btn" onclick="openAquaTipsModal()">
+    Aqua Tips
+</div>
+
+<!-- Modal Aqua Tips -->
+<div id="aqua-tips-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!-- Fondo -->
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75" onclick="closeAquaTipsModal()"></div>
+        </div>
+        
+        <!-- Contenido del Modal -->
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full aqua-tips-modal">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-2xl leading-6 font-bold text-gray-900 mb-6">
+                            Aqua Tips - Aporte de cada kit
+                        </h3>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="aqua-tips-table">
+                                <thead>
+                                    <tr>
+                                        <th>Descripción</th>
+                                        <th>Kit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-[#8ED2E9]">
+                                        <td>Cuerpo y dulzura, mucho dulzor, Cuerpo pesado; rica textura; calidad similar a un confite</td>
+                                        <td class="font-bold">Body & Sweetness</td>
+                                    </tr>
+                                    <tr class="bg-[#DA3987] text-white">
+                                        <td>Brillo y notas frutales, en exceso aporta amargor</td>
+                                        <td class="font-bold">Fruit Sparkle</td>
+                                    </tr>
+                                    <tr class="bg-[#A8CB4E]">
+                                        <td>Brillo, notas frutales<br>Florales y citricos</td>
+                                        <td class="font-bold">Floral & Citrus Brightness</td>
+                                    </tr>
+                                    <tr class="bg-[#FFF585]">
+                                        <td>Aporta estructura, equilibrio, y control de acidez</td>
+                                        <td class="font-bold">Balance & Structure</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button onclick="closeAquaTipsModal()" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-fruit text-base font-medium text-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fruit sm:ml-3 sm:w-auto sm:text-sm">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>

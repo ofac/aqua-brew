@@ -1,0 +1,63 @@
+
+:root {
+    scroll-behavior: smooth;
+}
+
+#cart-modal {
+    transition: opacity 0.3s ease;
+}
+
+#added-to-cart-modal {
+    transition: all 0.3s ease;
+}
+
+.aqua-tips-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 40;
+    background-color: #DA3987;
+    color: white;
+    border-radius: 9999px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.aqua-tips-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.aqua-tips-modal {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.aqua-tips-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.aqua-tips-table th, .aqua-tips-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.aqua-tips-table th {
+    background-color: #f3f4f6;
+    font-weight: 600;
+}
+
+.aqua-tips-table tr:hover {
+    background-color: #f9fafb;
+}
