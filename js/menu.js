@@ -81,6 +81,40 @@ function closeAquaTipsModal() {
     document.body.style.overflow = 'auto';
 }
 
+
+
+// Funciones para abrir y cerrar los modales
+function openModalLink(modalType) {
+    document.getElementById(`${modalType}-modal`).classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+}
+
+function closeModalLink(modalType) {
+    document.getElementById(`${modalType}-modal`).classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+}
+
+// Actualiza los enlaces del footer para usar estas funciones
+document.addEventListener('DOMContentLoaded', function() {
+    // Términos
+    document.querySelector('.link01').addEventListener('click', function(e) {
+        e.preventDefault();
+        openModalLink('terms');
+    });
+    
+    // Privacidad
+    document.querySelector('.link02').addEventListener('click', function(e) {
+        e.preventDefault();
+        openModalLink('privacy');
+    });
+    
+    // FAQ
+    document.querySelector('.link03').addEventListener('click', function(e) {
+        e.preventDefault();
+        openModalLink('faq');
+    });
+});
+
 // Config owl carousel 
 $('.owl-carousel').owlCarousel({
     loop: false,
