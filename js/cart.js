@@ -1,27 +1,27 @@
 // Datos de los productos
 const products = {
     'fruit': {
-        name: 'Fruit Sparkle',
+        name: 'Fruit Sparkle (20ml)',
         price: 20000,
         color: 'fruit'
     },
     'body': {
-        name: 'Body & Sweetness',
+        name: 'Body & Sweetness (20ml)',
         price: 20000,
         color: 'body'
     },
     'floral': {
-        name: 'Floral & Citrus Brightness',
+        name: 'Floral & Citrus Brightness (20ml)',
         price: 20000,
         color: 'floral'
     },
     'balance': {
-        name: 'Balance & Structure',
+        name: 'Balance & Structure (20ml)',
         price: 20000,
         color: 'balance'
     },
     'kit': {
-        name: 'Kit Completo',
+        name: 'Kit Completo (4x20ml)',
         price: 70000,
         color: 'black'
     }

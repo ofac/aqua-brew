@@ -18,7 +18,7 @@ function openModal(product) {
 
     switch(product) {
         case 'kit':
-            modalTitle.textContent = 'Kit Completo';
+            modalTitle.innerHTML = 'Kit Completo <small class="text-xs">(4x20ml)</small>';
             modalDescription.innerHTML = `<strong>Descubre el Kit completo de Aqua Brew:</strong> <br> La herramienta definitiva para baristas exigentes.
                                           Con los 4 kit minerales de Aqua Brew, lleva tu café filtrado al siguiente nivel.<br> <strong>Este kit te permite:</strong><br>
                                           Personalizar el perfil del agua según el tipo de café o el resultado que buscas: más cuerpo, dulzor, brillo o acidez.`
@@ -27,28 +27,28 @@ function openModal(product) {
             price.textContent = `$70.000`
             break;
         case 'fruit':
-            modalTitle.textContent = 'Fruit Sparkle';
+            modalTitle.innerHTML = 'Fruit Sparkle <small class="text-xs">(20ml)</small>';
             modalDescription.textContent = 'Aporta acidez brillante y notas frutales florales, con tonos de frutas cítricas.';
             modalColor.className = 'w-12 h-1 bg-fruit mb-4';
             confirmBtn.dataset.color = 'fruit'
             price.textContent = `$20.000`
             break;
         case 'body':
-            modalTitle.textContent = 'Body & Sweetness';
+            modalTitle.innerHTML = 'Body & Sweetness <small class="text-xs">(20ml)</small>';
             modalDescription.textContent = 'Aporta cuerpo y dulzura, con una textura delicada y un dulzor terso.';
             modalColor.className = 'w-12 h-1 bg-body mb-4';
             confirmBtn.dataset.color = 'body'
             price.textContent = `$20.000`
             break;
         case 'floral':
-            modalTitle.textContent = 'Floral & Citrus Brightness';
+            modalTitle.innerHTML = 'Floral & Citrus Brightness <small class="text-xs">(20ml)</small>';
             modalDescription.textContent = 'Aporta acidez brillante e intensa y notas frutales. En exceso, puede generar amargor dominante.';
             modalColor.className = 'w-12 h-1 bg-floral mb-4';
             confirmBtn.dataset.color = 'floral'
             price.textContent = `$20.000`
             break;
         case 'balance':
-            modalTitle.textContent = 'Balance & Structure';
+            modalTitle.innerHTML = 'Balance & Structure <small class="text-xs">(20ml)</small>';
             modalDescription.textContent = 'Aporta estructura y complejidad, proporcionando equilibrio y armonía. Genera una acidez de baja intensidad.';
             modalColor.className = 'w-12 h-1 bg-balance mb-4';
             confirmBtn.dataset.color = 'balance'
