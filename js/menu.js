@@ -24,35 +24,35 @@ function openModal(product) {
                                           Personalizar el perfil del agua según el tipo de café o el resultado que buscas: más cuerpo, dulzor, brillo o acidez.`
             modalColor.className = 'w-12 h-1 bg-gray-900 mb-4';
             confirmBtn.dataset.color = 'kit'
-            price.textContent = `$190.000`
+            price.textContent = `$70.000`
             break;
         case 'fruit':
             modalTitle.textContent = 'Fruit Sparkle';
             modalDescription.textContent = 'Aporta acidez brillante y notas frutales florales, con tonos de frutas cítricas.';
             modalColor.className = 'w-12 h-1 bg-fruit mb-4';
             confirmBtn.dataset.color = 'fruit'
-            price.textContent = `$50.000`
+            price.textContent = `$20.000`
             break;
         case 'body':
             modalTitle.textContent = 'Body & Sweetness';
             modalDescription.textContent = 'Aporta cuerpo y dulzura, con una textura delicada y un dulzor terso.';
             modalColor.className = 'w-12 h-1 bg-body mb-4';
             confirmBtn.dataset.color = 'body'
-            price.textContent = `$50.000`
+            price.textContent = `$20.000`
             break;
         case 'floral':
             modalTitle.textContent = 'Floral & Citrus Brightness';
             modalDescription.textContent = 'Aporta acidez brillante e intensa y notas frutales. En exceso, puede generar amargor dominante.';
             modalColor.className = 'w-12 h-1 bg-floral mb-4';
             confirmBtn.dataset.color = 'floral'
-            price.textContent = `$50.000`
+            price.textContent = `$20.000`
             break;
         case 'balance':
             modalTitle.textContent = 'Balance & Structure';
             modalDescription.textContent = 'Aporta estructura y complejidad, proporcionando equilibrio y armonía. Genera una acidez de baja intensidad.';
             modalColor.className = 'w-12 h-1 bg-balance mb-4';
             confirmBtn.dataset.color = 'balance'
-            price.textContent = `$50.000`
+            price.textContent = `$20.000`
             break;
     }
     modal.classList.remove('hidden');
