@@ -2,27 +2,27 @@
 const products = {
     'fruit': {
         name: 'Fruit Sparkle',
-        price: 50000,
+        price: 20000,
         color: 'fruit'
     },
     'body': {
         name: 'Body & Sweetness',
-        price: 50000,
+        price: 20000,
         color: 'body'
     },
     'floral': {
         name: 'Floral & Citrus Brightness',
-        price: 50000,
+        price: 20000,
         color: 'floral'
     },
     'balance': {
         name: 'Balance & Structure',
-        price: 50000,
+        price: 20000,
         color: 'balance'
     },
     'kit': {
         name: 'Kit Completo',
-        price: 190000,
+        price: 70000,
         color: 'black'
     }
 };
